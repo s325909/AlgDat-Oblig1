@@ -61,7 +61,7 @@ public class Oblig1 {
             }
         }
     }
-    
+
 
 
 
@@ -122,7 +122,7 @@ public class Oblig1 {
     public static int antallUlikeUsortert(int[] a) {
         if (a.length > 0) {
 
-
+            return 0;
 
         } else {
             return 0;
