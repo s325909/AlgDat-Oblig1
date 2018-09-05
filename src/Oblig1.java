@@ -10,14 +10,18 @@ public class Oblig1 {
         int values1[] = randomArray1(num_values);
         printArray(values1);
 
-        maks(values1);
+        //maks(values1);
+
+        int[] test = {1,2,3,4,5};
+
+        antallUlikeSortert(test);
     }
 
     //OPPGAVE 1
 
     /*
     Når blir det flest ombyttinger?
-    - Når tabellen er sykende rekkefølge
+    - Når det største tallet er først i tabellen
     Når blir det færrest?
     - Når tabellen er i stigende rekkefølge
     Hvor mange blir det i gjennomsnitt?
@@ -49,6 +53,7 @@ public class Oblig1 {
         }
     }
 
+    public static int inversjoner = 0;
 
     public static void bubble(int[] a) {
         for (int i = 0; i < a.length - 1; ++i) {
@@ -58,6 +63,8 @@ public class Oblig1 {
                 a[i] = a[i + 1];
                 a[i + 1] = tmp;
                 System.out.println(Arrays.toString(a));
+
+                inversjoner = inversjoner + 1;
             }
         }
     }
@@ -113,7 +120,16 @@ public class Oblig1 {
      * Oppgave 2
      */
     public static int antallUlikeSortert(int[] a) {
-        return 0;
+
+        bubble(a);
+
+        System.out.println("hei på deg" + inversjoner);
+
+        if (inversjoner == 0) {
+            return 0;
+        } else
+            throw new IllegalStateException
+                    ("Det finnes inversjoner => tabellen er ikke sortert stigende");
     }
 
     /**
