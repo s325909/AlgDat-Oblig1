@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Oblig1 {
@@ -12,9 +13,10 @@ public class Oblig1 {
 
         //maks(values1);
 
-        int[] test = {1,2,3,4,5};
+        int[] test = {2, 3,1, 10,9, 10, 9, 3, 11, 12};
 
-        antallUlikeSortert(test);
+        inversjoner = 0;
+        System.out.println(antallUlikeUsortert(test));
     }
 
     //OPPGAVE 1
@@ -118,30 +120,81 @@ public class Oblig1 {
 
     /**
      * Oppgave 2
+     *
+     * Antar at det menes at et enkelt tall i tabellen telles som et unikt tall
+     * Ikke at det skal være 2 eller flere forskjellige tall
      */
     public static int antallUlikeSortert(int[] a) {
 
         bubble(a);
 
-        System.out.println("hei på deg" + inversjoner);
-
         if (inversjoner == 0) {
-            return 0;
+            return numDiffValues(a);
         } else
             throw new IllegalStateException
-                    ("Det finnes inversjoner => tabellen er ikke sortert stigende");
+                    ("There are inversions, thus the array is not sorted ascending");
     }
 
     /**
      * Oppgave 3
+     *
+     * Uses bubble() method in order to sort the table in ascending order
      */
     public static int antallUlikeUsortert(int[] a) {
         if (a.length > 0) {
-
-            return 0;
-
+            for (int i = 0; i < a.length - 1; i++)
+                bubble(a);
+            return countUnique(a);
         } else {
             return 0;
         }
+    }
+
+//    Method obtain from this source:
+//    https://stackoverflow.com/questions/32444193/count-different-values-in-array-in-java
+//
+//    Uses an arraylist and makes use of its many useful methods
+//    in order to contain every unique number in the array
+//    and further use its size to determine how many uniques numbers there are
+
+    public static int numDiffValues(int[] a) {
+        int numValues;
+        ArrayList<Integer> diffNum = new ArrayList<>();
+
+        for(int i = 0; i < a.length; i++){
+            if(!diffNum.contains(a[i])){
+                diffNum.add(a[i]);
+            }
+        }
+
+        if(diffNum.size() > 0){
+            numValues = diffNum.size();
+        } else {
+            numValues = 0;
+        }
+
+        return numValues;
+    }
+
+//    Method obtained from this source:
+//    https://codereview.stackexchange.com/questions/114073/count-the-number-of-unique-elements-in-a-sorted-array
+//
+//    Requires that the array is sorted beforehand
+//    Compares each pair of numbers to see whether they are similar
+//    If they are different, increase the counter
+//
+//    Functions similarly to the method above, but without an assisting arraylist
+
+    public static int countUnique(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        int count = 1;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] != array[i + 1]) {
+                count++;
+            }
+        }
+        return count;
     }
 }
