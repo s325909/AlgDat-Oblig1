@@ -67,4 +67,24 @@ public class Oblig1 {
         }
         System.out.println("]");
     }
+
+    /**
+     * Oppgave 2
+     */
+    public static int antallUlikeSortert(int[] a) {
+        return 0;
+    }
+
+    /**
+     * Oppgave 3
+     */
+    public static int antallUlikeUsortert(int[] a) {
+        if (a.length > 0) {
+
+
+
+        } else {
+            return 0;
+        }
+    }
 }
