@@ -3,6 +3,9 @@ import java.util.Arrays;
 public class Oblig1 {
 
     public static void main(String[] args) {
+
+        /*
+
         // Bestem lengden av arrayet vi skal lage
         int num_values = 7;
 
@@ -10,11 +13,16 @@ public class Oblig1 {
         int values1[] = randomArray1(num_values);
         printArray(values1);
 
-        //maks(values1);
+        maks(values1);
 
-        int[] test = {1,2,3,4,5};
+        //int[] test = {1,2,3,4,5};
 
-        antallUlikeSortert(test);
+        //antallUlikeSortert(values1);
+
+        */
+
+        char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        rotasjon(abc);
     }
 
     //OPPGAVE 1
@@ -144,4 +152,46 @@ public class Oblig1 {
             return 0;
         }
     }
+
+    /**
+     * Oppgave 5
+     */
+
+    public static void rotasjon(char[] a){
+
+        char indx;
+
+        for (int i = 0; i < a.length; ++i){
+            indx = a[i];
+            System.out.println(indx);
+
+            /*
+            for (i = 0; i < a.length - 1; ++i) {
+                a[i] = a[i + 1];
+                a[i + 1] = indx;
+                System.out.println(Arrays.toString(a));
+
+            }
+            */
+
+            for (i = 1; i < a.length - 1; i++) {
+               a[i] = a[i-1];
+               indx = a[0];
+               System.out.println(indx);
+               System.out.println(Arrays.toString(a));
+
+            }
+
+        }
+
+
+
+
+    }
+
+
+
+
+
+
 }
