@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Gruppemedlemmer:
+ * Sondre Bitubekk - s321113
+ * Jasotharan Cyril - s325909
+ * Silje Bjoerknes - s320752
+ */
+
 public class Oblig1 {
 
     public static void main(String[] args) {
