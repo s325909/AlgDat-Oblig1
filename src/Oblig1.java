@@ -159,21 +159,29 @@ public class Oblig1 {
 
     public static void rotasjon(char[] a){
 
-        char indx;
+        System.out.println(Arrays.toString(a));
 
         for (int i = 0; i < a.length; ++i){
-            indx = a[i];
-            System.out.println(indx);
+            char tmp = a[i];
+            //System.out.println(indx);
+
+            a[i] = a[a.length - 1];
+            a[a.length - 1] = tmp;
+
+            System.out.println(Arrays.toString(a));
 
             /*
             for (i = 0; i < a.length - 1; ++i) {
-                a[i] = a[i + 1];
-                a[i + 1] = indx;
+                a[i] = a[a.length - 1];
+                a[a.length - 1] = indx;
                 System.out.println(Arrays.toString(a));
 
             }
+
             */
 
+
+            /*
             for (i = 1; i < a.length - 1; i++) {
                a[i] = a[i-1];
                indx = a[0];
@@ -181,8 +189,10 @@ public class Oblig1 {
                System.out.println(Arrays.toString(a));
 
             }
+            */
 
         }
+
 
 
 
