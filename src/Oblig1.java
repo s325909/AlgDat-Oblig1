@@ -11,6 +11,9 @@ import java.util.Arrays;
 public class Oblig1 {
 
     public static void main(String[] args) {
+
+        /*
+
         // Bestem lengden av arrayet vi skal lage
         int num_values = 7;
 
@@ -18,7 +21,7 @@ public class Oblig1 {
         int values1[] = randomArray1(num_values);
         printArray(values1);
 
-        //maks(values1);
+        maks(values1);
 
         int[] sortert = {1,2,3,3,4,5,6,7,8,8,9,10};
         int[] usortert = {2,3,1,10,9,10,9,3,11,12};
@@ -27,6 +30,11 @@ public class Oblig1 {
         inversjoner = 0;
         System.out.println("Unike tall i sortert tabell " + antallUlikeSortert(sortert));
         System.out.println("Unike tall i usortert tabell " + antallUlikeUsortert(usortert));
+        */
+
+        char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        rotasjon(abc);
+
     }
 
     //OPPGAVE 1
@@ -207,4 +215,56 @@ public class Oblig1 {
         }
         return count;
     }
+
+    /**
+     * Oppgave 5
+     */
+
+    public static void rotasjon(char[] a){
+
+        System.out.println(Arrays.toString(a));
+
+        for (int i = 0; i < a.length; ++i){
+            char tmp = a[i];
+            //System.out.println(indx);
+
+            a[i] = a[a.length - 1];
+            a[a.length - 1] = tmp;
+
+            System.out.println(Arrays.toString(a));
+
+            /*
+            for (i = 0; i < a.length - 1; ++i) {
+                a[i] = a[a.length - 1];
+                a[a.length - 1] = indx;
+                System.out.println(Arrays.toString(a));
+
+            }
+
+            */
+
+
+            /*
+            for (i = 1; i < a.length - 1; i++) {
+               a[i] = a[i-1];
+               indx = a[0];
+               System.out.println(indx);
+               System.out.println(Arrays.toString(a));
+
+            }
+            */
+
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
 }
