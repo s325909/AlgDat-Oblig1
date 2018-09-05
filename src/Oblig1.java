@@ -20,10 +20,13 @@ public class Oblig1 {
 
         //maks(values1);
 
-        int[] test = {2, 3,1, 10,9, 10, 9, 3, 11, 12};
+        int[] sortert = {1,2,3,3,4,5,6,7,8,8,9,10};
+        int[] usortert = {2,3,1,10,9,10,9,3,11,12};
 
+        // Må fikse dette med inversjoner siden main metoden skal fjernes
         inversjoner = 0;
-        System.out.println(antallUlikeUsortert(test));
+        System.out.println("Unike tall i sortert tabell " + antallUlikeSortert(sortert));
+        System.out.println("Unike tall i usortert tabell " + antallUlikeUsortert(usortert));
     }
 
     //OPPGAVE 1
