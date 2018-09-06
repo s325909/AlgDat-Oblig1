@@ -26,14 +26,17 @@ public class Oblig1 {
         int[] sortert = {1,2,3,3,4,5,6,7,8,8,9,10};
         int[] usortert = {2,3,1,10,9,10,9,3,11,12};
 
-        // Må fikse dette med inversjoner siden main metoden skal fjernes
-        inversjoner = 0;
         System.out.println("Unike tall i sortert tabell " + antallUlikeSortert(sortert));
         System.out.println("Unike tall i usortert tabell " + antallUlikeUsortert(usortert));
         */
 
         char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        rotasjon(abc);
+
+        rotasjon(abc, -2);
+
+        String s = "abc";
+        char[] stest = s.toCharArray();
+        System.out.println(Arrays.toString(stest));
 
     }
 
@@ -144,6 +147,7 @@ public class Oblig1 {
      */
     public static int antallUlikeSortert(int[] a) {
 
+        inversjoner = 0;
         bubble(a);
 
         if (inversjoner == 0) {
@@ -255,16 +259,54 @@ public class Oblig1 {
             */
 
         }
-
-
-
-
-
     }
 
+    /**
+     * Oppgave 6
+     */
 
+    public static void rotasjon(char[] a, int k){
 
+        System.out.println(Arrays.toString(a));
 
+        if (k > 0) {
+            for (int j = 0; j < k; j++) {
+                for (int i = 0; i < a.length; ++i) {
+                    char tmp = a[i];
+                    a[i] = a[a.length - 1];
+                    a[a.length - 1] = tmp;
 
+                    System.out.println(Arrays.toString(a));
 
+                }
+            }
+        } else {
+
+            for (int j = 0; j > k; j--) {
+                for (int i = 0; i < a.length; ++i) {
+                    char tmp = a[i];
+                    a[i] = a[a.length - 1];
+                    a[a.length - 1] = tmp;
+
+                    System.out.println(Arrays.toString(a));
+                }
+            }
+        }
+    }
+
+    /**
+     * Oppgave 7
+     */
+
+    public static String flett(String s, String t) {
+        char[] a = s.toCharArray();
+        char[] b = t.toCharArray();
+        char[] c = new char[a.length + b.length];
+
+        if (a.length == b.length) {
+
+        }
+
+        return "hei";
+    }
 }
