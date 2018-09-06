@@ -10,36 +10,6 @@ import java.util.Arrays;
 
 public class Oblig1 {
 
-    public static void main(String[] args) {
-
-        /*
-
-        // Bestem lengden av arrayet vi skal lage
-        int num_values = 7;
-
-        // Lag random array med metode 1
-        int values1[] = randomArray1(num_values);
-        printArray(values1);
-
-        maks(values1);
-
-        int[] sortert = {1,2,3,3,4,5,6,7,8,8,9,10};
-        int[] usortert = {2,3,1,10,9,10,9,3,11,12};
-
-        System.out.println("Unike tall i sortert tabell " + antallUlikeSortert(sortert));
-        System.out.println("Unike tall i usortert tabell " + antallUlikeUsortert(usortert));
-        */
-
-        char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-
-        rotasjon(abc, -2);
-
-        String s = "abc";
-        char[] stest = s.toCharArray();
-        System.out.println(Arrays.toString(stest));
-
-    }
-
     //OPPGAVE 1
 
     /*
@@ -230,7 +200,6 @@ public class Oblig1 {
 
         for (int i = 0; i < a.length; ++i){
             char tmp = a[i];
-            //System.out.println(indx);
 
             a[i] = a[a.length - 1];
             a[a.length - 1] = tmp;
@@ -256,37 +225,105 @@ public class Oblig1 {
                     a[i] = a[a.length - 1];
                     a[a.length - 1] = tmp;
 
-                    System.out.println(Arrays.toString(a));
+                    //System.out.println(Arrays.toString(a));
 
                 }
             }
         } else {
 
             for (int j = 0; j > k; j--) {
-                for (int i = 0; i < a.length; ++i) {
-                    char tmp = a[i];
-                    a[i] = a[a.length - 1];
-                    a[a.length - 1] = tmp;
+                for (int i = a.length-1; i > 0; --i) {
+                    char tmp = a[0];
+                    a[0] = a[i];
+                    a[i] = tmp;
 
-                    System.out.println(Arrays.toString(a));
+                    //System.out.println(Arrays.toString(a));
                 }
             }
         }
     }
 
     /**
-     * Oppgave 7
+     * Oppgave 7a
+     *
+     * Turns both parameter strings into arrays, and creates a new array
+     * with the combined length of these two. This gives us control over
+     * each letter, so we may merge them together by using their array index.
      */
 
     public static String flett(String s, String t) {
         char[] a = s.toCharArray();
         char[] b = t.toCharArray();
         char[] c = new char[a.length + b.length];
+        int diff = a.length - b.length;
 
-        if (a.length == b.length) {
+        // Temporary variables to control each array's index
+        int i = 0, j = 0, l = 0;
 
+        // Fills in each letter from the two provided arrays at
+        // every other index of the new array.
+        // This will only fill in letters until either array is depleted
+        while (j < a.length && l < b.length) {
+            c[i++] = a[j++];
+            c[i++] = b[l++];
         }
 
+        // The remaining letters of either array is then filled in
+        // at the remaining slots in the new array
+        while (i < c.length) {
+            if (diff > 0) {
+                c[i++] = a[j++];
+            } else if (diff < 0) {
+                c[i++] = b[l++];
+            }
+        }
+
+        return String.valueOf(c);
+    }
+
+    /**
+     * Oppgave 7b
+     */
+    public static String flett(String... s) {
+
+        
+
         return "hei";
+    }
+
+    public static void main(String[] args) {
+
+        String a = flett("ABCGD", "DEF");
+        String b = flett("heidei", "jaja");
+        System.out.println(a + " " + b);
+
+        /*
+
+        // Bestem lengden av arrayet vi skal lage
+        int num_values = 7;
+
+        // Lag random array med metode 1
+        int values1[] = randomArray1(num_values);
+        printArray(values1);
+
+        maks(values1);
+
+        int[] sortert = {1,2,3,3,4,5,6,7,8,8,9,10};
+        int[] usortert = {2,3,1,10,9,10,9,3,11,12};
+
+        System.out.println("Unike tall i sortert tabell " + antallUlikeSortert(sortert));
+        System.out.println("Unike tall i usortert tabell " + antallUlikeUsortert(usortert));
+        */
+
+//        char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+//
+//        rotasjon(abc, 6);
+//
+//        System.out.println(Arrays.toString(abc));
+//
+//        String s = "abc";
+//        char[] stest = s.toCharArray();
+//        System.out.println(Arrays.toString(stest));
+
     }
 }

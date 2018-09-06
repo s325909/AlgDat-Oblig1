@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c113bf3e-641a-4a1a-a2fa-192369e374bb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AlgDat-Oblig1/Oblig1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgDat-Oblig1/Oblig1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Oblig1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Oblig1.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,8 +17,8 @@
       <file leaf-file-name="Oblig1.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Oblig1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="292" column="13" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="13" />
+            <state relative-caret-position="228">
+              <caret line="288" column="8" selection-start-line="288" selection-start-column="8" selection-end-line="288" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,7 +49,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="952" />
-    <option name="width" value="977" />
+    <option name="width" value="973" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
@@ -166,7 +164,7 @@
     <option name="totallyTimeSpent" value="4308000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="762" y="0" width="781" height="830" extended-state="0" />
+    <frame x="762" y="0" width="778" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -178,7 +176,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42817295" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28730822" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -243,8 +241,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Oblig1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="292" column="13" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="13" />
+        <state relative-caret-position="228">
+          <caret line="288" column="8" selection-start-line="288" selection-start-column="8" selection-end-line="288" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
