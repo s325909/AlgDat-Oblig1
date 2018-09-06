@@ -30,13 +30,18 @@ public class Oblig1 {
         System.out.println("Unike tall i usortert tabell " + antallUlikeUsortert(usortert));
         */
 
-        char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        /*char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 
         rotasjon(abc, -2);
 
         String s = "abc";
         char[] stest = s.toCharArray();
-        System.out.println(Arrays.toString(stest));
+        System.out.println(Arrays.toString(stest));*/
+
+
+        int[] a = {2, 5, 26, 53, 13, 42, 84, 3, 8, 15, 24};
+        delsortering(a);
+        System.out.println(Arrays.toString(a));
 
     }
 
@@ -226,23 +231,14 @@ public class Oblig1 {
 
     public static void delsortering(int[] a){
 
-        int[] array = {2, 5, 26, 53, 13, 42, 84, 3, 8, 15, 24};
+        for (int i = 0; i<a.length; i++){
 
-        for (int i = 0; i<=a.length; i++){
-
-            if(a[i]/2 % 2 == 0){
-                System.out.println(array[i]);
+            if(a[i] % 2 == 0){
+                System.out.println(a[i]);
             }
         }
     }
 
-    public static void main(String[] args){
-
-        delsortering();
-
-        System.out.println(Arrays.toString(array));
-
-    }
     /**
      * Oppgave 5
      */
