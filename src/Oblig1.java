@@ -9,7 +9,6 @@ import java.util.Arrays;
  */
 
 public class Oblig1 {
-
     //OPPGAVE 1
 
     /*
@@ -188,6 +187,27 @@ public class Oblig1 {
             }
         }
         return count;
+    }
+
+    /**
+     * Oppgave 4
+     */
+
+    public static void delsortering(int[] a){
+
+        for (int i = 0; i<a.length; i++) {
+            int element = a[i];
+            int j = i - 1;
+            while (j >= 0 && a[j] > element) {
+                a[j + 1] = a[j];
+                j--;
+            }
+            a[j + 1] = element;
+
+            /*if(a[i] % 2 == 0){
+                System.out.println(a[i]);
+            }*/
+        }
     }
 
     /**
