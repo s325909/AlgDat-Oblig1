@@ -233,26 +233,6 @@ public class Oblig1 {
 
             System.out.println(Arrays.toString(a));
 
-            /*
-            for (i = 0; i < a.length - 1; ++i) {
-                a[i] = a[a.length - 1];
-                a[a.length - 1] = indx;
-                System.out.println(Arrays.toString(a));
-
-            }
-
-            */
-
-
-            /*
-            for (i = 1; i < a.length - 1; i++) {
-               a[i] = a[i-1];
-               indx = a[0];
-               System.out.println(indx);
-               System.out.println(Arrays.toString(a));
-
-            }
-            */
 
         }
 
