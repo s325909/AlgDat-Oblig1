@@ -221,6 +221,29 @@ public class Oblig1 {
     }
 
     /**
+     * Oppgave 4
+     */
+
+    public static void delsortering(int[] a){
+
+        int[] array = {2, 5, 26, 53, 13, 42, 84, 3, 8, 15, 24};
+
+        for (int i = 0; i<=a.length; i++){
+
+            if(a[i]/2 % 2 == 0){
+                System.out.println(array[i]);
+            }
+        }
+    }
+
+    public static void main(String[] args){
+
+        delsortering();
+
+        System.out.println(Arrays.toString(array));
+
+    }
+    /**
      * Oppgave 5
      */
 
