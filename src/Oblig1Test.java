@@ -1,4 +1,3 @@
-package no.oslomet.cs.algdat;
 
 ////// Testprogram for Oblig 1 - 2018 ////////////////////////
 
@@ -42,6 +41,7 @@ public class Oblig1Test {
 
     ///// Oppgave 1 //////////////////////////////////////
 
+    /*
     public static int oppgave1() {
         int antallFeil = 0;
 
@@ -93,6 +93,7 @@ public class Oblig1Test {
         }
         return antallFeil;
     }
+    */
 
 ///// Oppgave 2 //////////////////////////////////////
 
@@ -187,7 +188,7 @@ public class Oblig1Test {
     }
 
     ///// Oppgave 4 //////////////////////////////////////
-
+    /*
     public static int oppgave4() {
         int antallFeil = 0;
 
@@ -342,6 +343,7 @@ public class Oblig1Test {
 
         return antallFeil;
     }
+    */
 
     ///// Oppgave 5 //////////////////////////////////////
 
@@ -626,7 +628,7 @@ public class Oblig1Test {
     }
 
     ///// Oppgave 8 //////////////////////////////////////
-
+    /*
     public static int oppgave8() {
         int antallFeil = 0;
 
@@ -999,5 +1001,6 @@ public class Oblig1Test {
 
         return a;                        // permutasjonen returneres
     }
+    */
 
 } // class Oblig1Test

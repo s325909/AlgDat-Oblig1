@@ -9,6 +9,8 @@ import java.util.Arrays;
  */
 
 public class Oblig1 {
+
+    private Oblig1(){}
     //OPPGAVE 1
 
     /*
