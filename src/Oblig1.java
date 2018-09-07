@@ -312,16 +312,32 @@ public class Oblig1 {
      */
     public static String flett(String... s) {
 
-        
+        String tmp = "";
+        String[] totalString = new String[s.length];
 
-        return "hei";
+        System.out.println(s.length);
+
+        for (int i = 0; i < s[i].length() - 1; i++) {
+            System.out.println(s[i].length());
+            System.out.println(i);
+            for (int j = 0; j < s.length - 1; j++) {
+                System.out.println(s[j].charAt(i));
+                tmp += s[j].charAt(i);
+                //System.out.println(j);
+            }
+        }
+
+        return tmp;
     }
 
     public static void main(String[] args) {
 
-        String a = flett("ABCGD", "DEF");
-        String b = flett("heidei", "jaja");
-        System.out.println(a + " " + b);
+        String test = flett("AM ","L","GEDS","ORATKRR","R TRTE","IO","TGAUU");
+        System.out.println(test);
+
+//        String a = flett("AB CGD", "D EF");
+//        String b = flett("heidei", "jaja");
+//        System.out.println(a + " " + b);
 
         /*
 
