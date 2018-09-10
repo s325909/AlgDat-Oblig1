@@ -330,10 +330,63 @@ public class Oblig1 {
         return tmp;
     }
 
+
+    /**
+     * Oppgave 9
+     */
+
+    public static int[]tredjeMin(int[]  a){
+
+        System.out.println(Arrays.toString(a));
+
+        /*
+        int firstMin;
+        int secondMin;
+        int thirdMin;
+        */
+
+
+        int firstMin = a[0];
+        int secondMin = a[1];
+        int thirdMin = a[2];
+
+
+        for (int i = 3; i < a.length; ++i){
+            if (a[i] < firstMin){
+                thirdMin = secondMin;
+                secondMin = firstMin;
+                firstMin = a[i];
+            }
+            else if (a[i] < secondMin){
+                thirdMin = secondMin;
+                secondMin = a[i];
+            }
+            else if (a[i] < thirdMin){
+                thirdMin = a[i];
+            }
+        }
+
+        System.out.println("first minimu is: " + firstMin);
+        System.out.println("second minimum is: " + secondMin);
+        System.out.println("thirsd minimum is: " + thirdMin);
+
+        int[] minArray = {firstMin, secondMin, thirdMin};
+        System.out.println(Arrays.toString(minArray));
+
+        return minArray;
+
+    }
+
     public static void main(String[] args) {
 
+        int[] a = randomArray1(10);
+        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
+        tredjeMin(a);
+
+        /*
         String test = flett("AM ","L","GEDS","ORATKRR","R TRTE","IO","TGAUU");
         System.out.println(test);
+        */
 
 //        String a = flett("AB CGD", "D EF");
 //        String b = flett("heidei", "jaja");
