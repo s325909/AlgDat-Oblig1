@@ -75,20 +75,23 @@ public class Oblig1 {
      * @return Array med lengde num_values
      */
     public static int[] randomArray1(int num_values) {
-        System.out.println("randomArray1 lager et array");
+        System.out.println("randomArray2 lager et array");
         int values[] = new int[num_values];
-        int taken[] = new int[num_values];
 
-        // Loop over arrayen og fyll med tall
-        for (int i = 0; i < num_values; ++i) {
-            //values[i] = i+1;
-            int random_value = (int) (Math.random() * num_values + 1);
-            if (taken[random_value - 1] == 1) {
-                i = i - 1;
-            } else {
-                values[i] = random_value;
-                taken[random_value - 1] = 1;
-            }
+        //Fyll arrayet med tallene 1 til 10
+        for (int i=0; i<num_values; ++i) {
+            values[i] = i+1;
+        }
+
+        //Loop gjennom arrayet, og bytt random
+        for (int i=num_values-1; i > 0; --i) {
+            // Trekk et tilfeldig tall mellom 0 og i
+            int k = (int) (Math.random()*i);
+
+            //bytt tallene k og i
+            int temp = values[i];
+            values[i] = values[k];
+            values[k] = temp;
         }
 
         return values;
