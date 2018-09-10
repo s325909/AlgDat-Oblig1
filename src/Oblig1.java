@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 /**
  * Gruppemedlemmer:
@@ -339,12 +340,9 @@ public class Oblig1 {
 
         System.out.println(Arrays.toString(a));
 
-        /*
-        int firstMin;
-        int secondMin;
-        int thirdMin;
-        */
-
+        if (a.length < 3){
+            throw new NoSuchElementException("Arrayet har for få elemnter");
+        }
 
         int firstMin = a[0];
         int secondMin = a[1];
@@ -379,7 +377,7 @@ public class Oblig1 {
 
     public static void main(String[] args) {
 
-        int[] a = randomArray1(10);
+        int[] a = randomArray1(7);  // num_values må være minst 5!
         //int[] a = { 1, 8, 6, 7, 5, 4, 9};
         tredjeMin(a);
 
