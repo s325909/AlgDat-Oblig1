@@ -352,7 +352,7 @@ public class Oblig1 {
         int thirdMin = a[2];
 
 
-        for (int i = 3; i < a.length; ++i){
+        for (int i = 1; i < a.length; ++i){
             if (a[i] < firstMin){
                 thirdMin = secondMin;
                 secondMin = firstMin;
@@ -380,7 +380,7 @@ public class Oblig1 {
 
     public static void main(String[] args) {
 
-        int[] a = randomArray(7);  // num_values må være minst 5!
+        int[] a = randomArray(3);
         //int[] a = { 1, 8, 6, 7, 5, 4, 9};
         tredjeMin(a);
 
