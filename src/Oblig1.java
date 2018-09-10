@@ -74,7 +74,7 @@ public class Oblig1 {
      * @param num_values Lengden på arrayet
      * @return Array med lengde num_values
      */
-    public static int[] randomArray1(int num_values) {
+    public static int[] randomArray(int num_values) {
         System.out.println("randomArray2 lager et array");
         int values[] = new int[num_values];
 
@@ -367,9 +367,9 @@ public class Oblig1 {
             }
         }
 
-        System.out.println("first minimu is: " + firstMin);
+        System.out.println("first minimum is: " + firstMin);
         System.out.println("second minimum is: " + secondMin);
-        System.out.println("thirsd minimum is: " + thirdMin);
+        System.out.println("third minimum is: " + thirdMin);
 
         int[] minArray = {firstMin, secondMin, thirdMin};
         System.out.println(Arrays.toString(minArray));
@@ -380,7 +380,7 @@ public class Oblig1 {
 
     public static void main(String[] args) {
 
-        int[] a = randomArray1(7);  // num_values må være minst 5!
+        int[] a = randomArray(7);  // num_values må være minst 5!
         //int[] a = { 1, 8, 6, 7, 5, 4, 9};
         tredjeMin(a);
 
@@ -399,7 +399,7 @@ public class Oblig1 {
         int num_values = 7;
 
         // Lag random array med metode 1
-        int values1[] = randomArray1(num_values);
+        int values1[] = randomArray(num_values);
         printArray(values1);
 
         maks(values1);
