@@ -343,7 +343,7 @@ public class Oblig1 {
 
         System.out.println(Arrays.toString(a));
 
-        if (a.length < 3){
+        if (a.length < 4){
             throw new NoSuchElementException("Arrayet har for få elemnter");
         }
 
