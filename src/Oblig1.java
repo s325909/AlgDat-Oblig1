@@ -372,44 +372,48 @@ public class Oblig1 {
 
         System.out.println(Arrays.toString(a));
 
-        if (a.length < 4){
+        if (a.length < 3){
             throw new NoSuchElementException("Arrayet har for få elemnter");
         }
 
-        int firstMin = a[0];
-        int secondMin = a[1];
-        int thirdMin = a[2];
+        int startIndx[] = indekssortering(new int[]{a[0], a[1], a[2]});
 
+        int m = startIndx[0];
+        int nm = startIndx[1];
+        int tm = startIndx[2];
 
-        for (int i = 1; i < a.length; ++i){
-            if (a[i] < firstMin){
-                thirdMin = secondMin;
-                secondMin = firstMin;
-                firstMin = a[i];
+        int min = a[m];
+        int nestemin = a[nm];
+        int tredjemin = a[tm];
+
+        for (int i = 3; i < a.length; ++i){
+            if (a[i] < min){
+                tredjemin = nestemin;
+                nestemin = min;
+                min = a[i];
             }
-            else if (a[i] < secondMin){
-                thirdMin = secondMin;
-                secondMin = a[i];
+            else if (a[i] < nestemin){
+                tredjemin = nestemin;
+                nestemin = a[i];
             }
-            else if (a[i] < thirdMin){
-                thirdMin = a[i];
+            else if (a[i] < tredjemin){
+                tredjemin = a[i];
             }
         }
 
-        System.out.println("first minimum is: " + firstMin);
-        System.out.println("second minimum is: " + secondMin);
-        System.out.println("third minimum is: " + thirdMin);
+        System.out.println("minste verdi: " + min);
+        System.out.println("nest minste verdi: " + nestemin);
+        System.out.println("tredje minste verdi: " + tredjemin);
 
-        int[] minArray = {firstMin, secondMin, thirdMin};
+        int[] minArray = {min, nestemin, tredjemin};
         System.out.println(Arrays.toString(minArray));
 
         return minArray;
-
     }
 
     public static void main(String[] args) {
 
-        int[] a = randomArray(3);
+        int[] a = randomArray(9);
         //int[] a = { 1, 8, 6, 7, 5, 4, 9};
         tredjeMin(a);
 
