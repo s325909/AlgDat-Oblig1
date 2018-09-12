@@ -212,6 +212,7 @@ public class Oblig1 {
                         h--;
                     }
                 }
+
             /*int element = a[i];
             int j = i - 1;
             if (a[i] / 2 % 2 == 0) {
@@ -343,6 +344,19 @@ public class Oblig1 {
         return tmp;
     }
 
+    /**
+     * Oppgave 8
+     */
+    public static int[] indekssortering(int[] a){
+
+        for (int i = 0; i<a.length; i++){
+
+        int indeks = a[i];
+
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(indeks));
+
+    }
 
     /**
      * Oppgave 9
