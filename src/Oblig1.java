@@ -299,9 +299,41 @@ public class Oblig1 {
     /**
      * Oppgave 8
      */
-    public static int[] indekssortering(int[] a) {
+    public static int[] indekssortering(int[] array) {
 
-        return a;
+        int [] indeks = new int[array.length];
+        int [] a = new int [array.length];
+
+        for (int i=0; i<array.length; i++){
+            a[i] = array[i];
+            indeks[i]= i;
+        }
+
+        for (int i = 0; i < a.length - 1; i++)
+        {
+            int m = i;             // indeks til den foreløpig minste
+            int  minverdi = a[i];  // verdien til den foreløpig minste
+
+            for (int j = i + 1; j < a.length; j++)
+            {
+                if (a[j] < minverdi)
+                {
+                    minverdi = a[j];  // ny minste verdi
+                    m = j;            // indeksen til ny minste verdi
+                }
+            }
+            // bytter om a[i] og a[m]
+            int temp = a[i];
+            a[i] = a[m];
+            a[m] = temp;
+
+            int temp1 = indeks[i];
+            indeks[i] = indeks[m];
+            indeks[m] = temp1;
+
+        }
+
+        return indeks;
     }
 
     /**
@@ -507,11 +539,22 @@ public class Oblig1 {
 
     public static void main(String[] args) {
 
-        int[] a = {2, 5, 8, 13, 1, 4, 3, 9, 28, 18, 23, 11};
+        int[] a = {6,10,16,11,7,12,3,9,8,5};
+
+        int[] indeks = indekssortering(a);
+
+        System.out.println(Arrays.toString(a)); // skriver ut a
+
+        System.out.println(Arrays.toString(indeks)); // skriver ut indeks
+
+        /**
+         * Oppgave 4
+         */
+       /* int[] a = {2, 5, 8, 13, 1, 4, 3, 9, 28, 18, 23, 11};
 
         delsortering(a);
 
-        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(a));*/
 
         /*int[] a = {2, 5, 7, 9, 3, 4, 11, 23, 6, 10, 14, 17};
         delsortering(a);
