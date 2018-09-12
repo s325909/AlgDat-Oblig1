@@ -12,187 +12,86 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
 
     private Oblig1(){}
-    //OPPGAVE 1
 
-    /*
-    Når blir det flest ombyttinger?
-    - Når det største tallet er først i tabellen
-    Når blir det færrest?
-    - Når tabellen er i stigende rekkefølge
-    Hvor mange blir det i gjennomsnitt?
-    -
+    /**
+     * Oppgave 1
+     *
+     * Når er det flest ombyttinger?
+     * - Når det stoerste tallet er foerst i tabellen
+     *
+     * Når blir det faerrest ombyttinger?
+     * - Når tabellen er i stigende rekkefoelge
+     *
+     * Hvor mange blir det i gjennomsnitt?
+     * -
      */
 
-
+    // Runs the bubble method, which will sort the values of the array in ascending order.
+    // Thus the highest index will contain the largest number.
     public static int maks(int[] a) {
-        int max = a[0];
+        if (a.length == 0)
+            throw new NoSuchElementException("Array cannot be empty!");
 
-
-        for (int i = 0; i < a.length; ++i) {
-            if (max < a[i]) {
-                max = a[i];
-                System.out.println(max);
-
-                bubble(a);
-                //bubble_srt(a);
-            }
-        }
-        return max;
+        bubble(a);
+        return a[a.length-1];
     }
 
-
-    public static void bubble_srt(int[] a) {
-        for (int i = 0; i < a.length; ++i) {
-            //System.out.println("i=" + i);
-            bubble(a);
-        }
-    }
-
-    public static int inversjoner = 0;
-
-    public static void bubble(int[] a) {
-        for (int i = 0; i < a.length - 1; ++i) {
-            if (a[i] > a[i + 1]) {
-                System.out.println("Inversjon i plass " + i + ", bytter om");
-                int tmp = a[i];
-                a[i] = a[i + 1];
-                a[i + 1] = tmp;
-                System.out.println(Arrays.toString(a));
-
-                inversjoner = inversjoner + 1;
-            }
-        }
-    }
-
-
-
-
-    /**
-     * Funksjon som lager et array med tilfeldige tall mellom
-     * 1 og num_values uten duplikater
-     *
-     * @param num_values Lengden på arrayet
-     * @return Array med lengde num_values
-     */
-    public static int[] randomArray(int num_values) {
-        System.out.println("randomArray2 lager et array");
-        int values[] = new int[num_values];
-
-        //Fyll arrayet med tallene 1 til 10
-        for (int i=0; i<num_values; ++i) {
-            values[i] = i+1;
-        }
-
-        //Loop gjennom arrayet, og bytt random
-        for (int i=num_values-1; i > 0; --i) {
-            // Trekk et tilfeldig tall mellom 0 og i
-            int k = (int) (Math.random()*i);
-
-            //bytt tallene k og i
-            int temp = values[i];
-            values[i] = values[k];
-            values[k] = temp;
-        }
-
-        return values;
-    }
-
-
-    /**
-     * Funksjon som skriver ut et array til skjerm
-     *
-     * @param a Arrayet å skrive ut
-     */
-    public static void printArray(int[] a) {
-        System.out.print("[");
-        if (a.length > 0) {
-            System.out.print(a[0]);
-        }
-        for (int i = 1; i < a.length; ++i) {
-            System.out.print(", " + a[i]);
-        }
-        System.out.println("]");
+    // Runs the bubble method which counts the number of times two values are being switched
+    public static int ombyttinger(int[] a) {
+        bubble(a);
+        return inversjoner;
     }
 
     /**
      * Oppgave 2
      *
-     * Antar at det menes at et enkelt tall i tabellen telles som et unikt tall
-     * Ikke at det skal være 2 eller flere forskjellige tall
+     * Calls the ombyttiner() method first, which will return the number of times values are being switched.
+     * If this number equals 0, run another method which adds each unique value in the array
+     * into a new ArrayList. The size of the ArrayList equals the number of unique values.
      */
     public static int antallUlikeSortert(int[] a) {
-
-        inversjoner = 0;
-        bubble(a);
-
-        if (inversjoner == 0) {
+        if (ombyttinger(a) == 0) {
             return numDiffValues(a);
         } else
             throw new IllegalStateException
                     ("There are inversions, thus the array is not sorted ascending");
+
+        // Can also use method countUnique(), as long as the array is sorted, which it is
+        // when bubble(a) is called.
+
+        // Another way to solve this task is to use a temporary boolean table which has the length
+        // equal to the largest number in array 'a'. Then you use each value of array 'a' as index
+        // in the boolean table and set each of these to true. As such, only unique values are counted.
+        // Finally you can iterate through each index of the boolean table and count each 'true' value.
     }
 
     /**
      * Oppgave 3
      *
-     * Uses bubble() method in order to sort the table in ascending order
+     * Method gradually goes through each index in a.
+     * As each index i is selected, its value is compared to all the values of index j in a descending order.
+     *
+     * I.e. a[2] is compared to a[1] and a[0]. If a[i] equals a[j], the boolean is set to true
+     * and 'sum' is not increased.
      */
     public static int antallUlikeUsortert(int[] a) {
-        if (a.length > 0) {
-            for (int i = 0; i < a.length - 1; i++)
-                bubble(a);
-            return countUnique(a);
-        } else {
+        if (a.length == 0)
             return 0;
-        }
-    }
 
-//    Method obtain from this source:
-//    https://stackoverflow.com/questions/32444193/count-different-values-in-array-in-java
-//
-//    Uses an arraylist and makes use of its many useful methods
-//    in order to contain every unique number in the array
-//    and further use its size to determine how many uniques numbers there are
-
-    public static int numDiffValues(int[] a) {
-        int numValues;
-        ArrayList<Integer> diffNum = new ArrayList<>();
-
-        for(int i = 0; i < a.length; i++){
-            if(!diffNum.contains(a[i])){
-                diffNum.add(a[i]);
+        int sum = 0;
+        for (int i = 0; i < a.length; ++i) {
+            boolean alleredeTelt = false;
+            for (int j = i-1; j >= 0; --j) {
+                if (a[i] == a[j]) {
+                    alleredeTelt = true;
+                }
             }
+
+            if (!alleredeTelt)
+                ++sum;
         }
 
-        if(diffNum.size() > 0){
-            numValues = diffNum.size();
-        } else {
-            numValues = 0;
-        }
-
-        return numValues;
-    }
-
-//    Method obtained from this source:
-//    https://codereview.stackexchange.com/questions/114073/count-the-number-of-unique-elements-in-a-sorted-array
-//
-//    Requires that the array is sorted beforehand
-//    Compares each pair of numbers to see whether they are similar
-//    If they are different, increase the counter
-//
-//    Functions similarly to the method above, but without an assisting arraylist
-
-    public static int countUnique(int[] array) {
-        if (array.length == 0) {
-            return 0;
-        }
-        int count = 1;
-        for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] != array[i + 1]) {
-                count++;
-            }
-        }
-        return count;
+        return sum;
     }
 
     /**
@@ -258,30 +157,22 @@ public class Oblig1 {
      * Oppgave 6
      */
 
-    public static void rotasjon(char[] a, int k){
-
-        System.out.println(Arrays.toString(a));
-
-        if (k > 0) {
-            for (int j = 0; j < k; j++) {
+    public static void rotasjon(char[] a, int k) {
+        if (a.length > 1) {
+            char[] tmp = new char[a.length];
+            if (k >= 0) {
                 for (int i = 0; i < a.length; ++i) {
-                    char tmp = a[i];
-                    a[i] = a[a.length - 1];
-                    a[a.length - 1] = tmp;
-
-                    //System.out.println(Arrays.toString(a));
-
+                    tmp[(i+k)%a.length] = a[i];
                 }
-            }
-        } else {
-
-            for (int j = 0; j > k; j--) {
-                for (int i = a.length-1; i > 0; --i) {
-                    char tmp = a[0];
-                    a[0] = a[i];
-                    a[i] = tmp;
-
-                    //System.out.println(Arrays.toString(a));
+                for (int i = 0; i < a.length; ++i) {
+                    a[i] = tmp[i];
+                }
+            } else {
+                for (int i = a.length-1; i >= 0; --i) {
+                    tmp[(((a.length - 1) - i) - k)%a.length] = a[i];
+                }
+                for (int i = 0; i < a.length; ++i) {
+                    a[i] = tmp[(a.length - 1) - i];
                 }
             }
         }
@@ -327,22 +218,27 @@ public class Oblig1 {
 
     /**
      * Oppgave 7b
+     *
+     *
      */
     public static String flett(String... s) {
 
         String tmp = "";
-        String[] totalString = new String[s.length];
+        int maxLen = 0;
 
-        System.out.println(s.length);
+        for (int i = 0; i < s.length; ++i) {
+            if (s[i].length() > maxLen)
+                maxLen = s[i].length();
+        }
 
-        for (int i = 0; i < s[i].length() - 1; i++) {
-            System.out.println(s[i].length());
-            System.out.println(i);
-            for (int j = 0; j < s.length - 1; j++) {
-                System.out.println(s[j].charAt(i));
-                tmp += s[j].charAt(i);
-                //System.out.println(j);
+        int idx = 0;
+        while(idx < maxLen) {
+            for (int i = 0; i < s.length; ++i) {
+                if (idx < s[i].length()) {
+                    tmp += s[i].charAt(idx);
+                }
             }
+            ++idx;
         }
 
         return tmp;
@@ -407,11 +303,131 @@ public class Oblig1 {
 
     }
 
+
+
+
+    ///// Hjelpemetoder /////////////////////////////////////////
+
+    public static int inversjoner = 0;
+
+    // Method for sort an array a, via bubble-sorting.
+    // Compares two pairs of values, and moves the largest number to the right.
+    public static void bubble(int[] a) {
+        inversjoner = 0;
+
+        for (int i = 0; i < a.length - 1; ++i) {
+            if (a[i] > a[i + 1]) {
+                int tmp = a[i+1];
+                a[i+1] = a[i];
+                a[i] = tmp;
+                ++inversjoner;
+            }
+        }
+    }
+
+//    Method obtain from this source:
+//    https://stackoverflow.com/questions/32444193/count-different-values-in-array-in-java
+//
+//    Creates an ArrayList and adds each unique value in array 'a' into it.
+//    The size of the ArrayList will then equal the number of unique values.
+//
+//    This method doesn't require the array to be sorted, but it obviously uses an ArrayList as help
+
+    public static int numDiffValues(int[] a) {
+        int numValues;
+        ArrayList<Integer> diffNum = new ArrayList<>();
+
+        for(int i = 0; i < a.length; i++){
+            if(!diffNum.contains(a[i])){
+                diffNum.add(a[i]);
+            }
+        }
+
+        if(diffNum.size() > 0){
+            numValues = diffNum.size();
+        } else {
+            numValues = 0;
+        }
+
+        return numValues;
+    }
+
+//    Method obtained from this source:
+//    https://codereview.stackexchange.com/questions/114073/count-the-number-of-unique-elements-in-a-sorted-array
+//
+//    Requires that the array is sorted beforehand
+//    Compares each pair of numbers to see whether they are similar
+//    If they are different, increase the counter
+
+    public static int countUnique(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        int count = 1;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] != array[i + 1]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Funksjon som lager et array med tilfeldige tall mellom
+     * 1 og num_values uten duplikater
+     *
+     * @param num_values Lengden på arrayet
+     * @return Array med lengde num_values
+     */
+    public static int[] randomArray(int num_values) {
+        System.out.println("randomArray2 lager et array");
+        int values[] = new int[num_values];
+
+        //Fyll arrayet med tallene 1 til 10
+        for (int i=0; i<num_values; ++i) {
+            values[i] = i+1;
+        }
+
+        //Loop gjennom arrayet, og bytt random
+        for (int i=num_values-1; i > 0; --i) {
+            // Trekk et tilfeldig tall mellom 0 og i
+            int k = (int) (Math.random()*i);
+
+            //bytt tallene k og i
+            int temp = values[i];
+            values[i] = values[k];
+            values[k] = temp;
+        }
+
+        return values;
+    }
+
+
+    /**
+     * Funksjon som skriver ut et array til skjerm
+     *
+     * @param a Arrayet å skrive ut
+     */
+    public static void printArray(int[] a) {
+        System.out.print("[");
+        if (a.length > 0) {
+            System.out.print(a[0]);
+        }
+        for (int i = 1; i < a.length; ++i) {
+            System.out.print(", " + a[i]);
+        }
+        System.out.println("]");
+    }
+
     public static void main(String[] args) {
+
 
         int[] a = randomArray(3);
         //int[] a = { 1, 8, 6, 7, 5, 4, 9};
-        tredjeMin(a);
+
+        char[] b = {'A', 'B','C', 'D', 'E'};
+        Oblig1Alt.rotasjon(b, -2);
+        //tredjeMin(a);
 
         /*
         String test = flett("AM ","L","GEDS","ORATKRR","R TRTE","IO","TGAUU");
