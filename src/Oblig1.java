@@ -24,7 +24,7 @@ public class Oblig1 {
      * - Når tabellen er i stigende rekkefoelge
      *
      * Hvor mange blir det i gjennomsnitt?
-     * -
+     * - Veit ikke! Kanskje 3. muligen 4.
      */
 
     // Runs the bubble method, which will sort the values of the array in ascending order.
@@ -155,6 +155,10 @@ public class Oblig1 {
 
     /**
      * Oppgave 5
+     * @param a takes in a char table
+     *
+     * The method uses a variable tmp and
+     * a for-loop to move all elements one unit to the right.
      */
 
     public static void rotasjon(char[] a){
@@ -175,6 +179,11 @@ public class Oblig1 {
 
     /**
      * Oppgave 6
+     * Creates a new help table tmp, where we start on index k and fill in
+     * values (from the original table) to the right if k is positive
+     * and to the left if k is negative.
+     *
+     * Uses mod to determine the transfer position.
      */
 
     public static void rotasjon(char[] a, int k) {
@@ -239,7 +248,18 @@ public class Oblig1 {
     /**
      * Oppgave 7b
      *
+     * The method first finds the longest String in the provided array.
+     * This number is as a limiter for the number idx.
      *
+     * Further, we iterate through the length of each String in the array.
+     * If the length of this String is larger than the gradually increasing number idx,
+     * the character at this number in each of the Strings in the array are added to the
+     * temporary String tmp. This functions similarly to the index in an array.
+     *
+     * This ensure several things:
+     * Empty Strings are ignored, String that have reached their end are ignored, and the given
+     * index number grabs the correct character from each String gradually and continuously until
+     * all Strings have been iterated through. 
      */
     public static String flett(String... s) {
 
@@ -274,6 +294,16 @@ public class Oblig1 {
 
     /**
      * Oppgave 9
+     *
+     * This method creates a help table startIndx containing the first three values.
+     * Then use index sorting to get it in ascending order and declaree
+     * these values as the lowest, second- and third-lowest values and indexes.
+     *
+     * Runs through a for-loop to check and determine min, nextmin and thirdmin
+     * by swapping values and indexes of these along the way.
+     *
+     * After we have driven through the entire array we will end up with the
+     * lowest, second- and third-lowest values and indexes.
      */
 
     public static int[] tredjeMin(int[] a){
@@ -281,7 +311,7 @@ public class Oblig1 {
         System.out.println(Arrays.toString(a));
 
         if (a.length < 3){
-            throw new NoSuchElementException("Arrayet har for få elemnter");
+            throw new NoSuchElementException("Arrayet har for få elementer");
         }
 
         int startIndx[] = indekssortering(new int[]{a[0], a[1], a[2]});
@@ -461,23 +491,6 @@ public class Oblig1 {
         }
 
         return values;
-    }
-
-
-    /**
-     * Funksjon som skriver ut et array til skjerm
-     *
-     * @param a Arrayet å skrive ut
-     */
-    public static void printArray(int[] a) {
-        System.out.print("[");
-        if (a.length > 0) {
-            System.out.print(a[0]);
-        }
-        for (int i = 1; i < a.length; ++i) {
-            System.out.print(", " + a[i]);
-        }
-        System.out.println("]");
     }
 
     public static void main(String[] args) {
