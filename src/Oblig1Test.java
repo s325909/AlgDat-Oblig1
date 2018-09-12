@@ -188,8 +188,6 @@ public class Oblig1Test {
     }
 
     ///// Oppgave 4 //////////////////////////////////////
-    /*
-
 
     public static int oppgave4() {
         int antallFeil = 0;
@@ -345,7 +343,6 @@ public class Oblig1Test {
 
         return antallFeil;
     }
-    */
 
     ///// Oppgave 5 //////////////////////////////////////
 
