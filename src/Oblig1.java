@@ -353,20 +353,22 @@ public class Oblig1 {
      */
     public static int[] indekssortering(int[] a){
 
-        for (int i = 0; i<a.length; i++){
+        for (int i = 0; i<a.length; i++) {
 
-        int indeks = a[i];
+            int indeks = a[i];
 
-        System.out.println(Arrays.toString(a));
-        System.out.println(Arrays.toString(indeks));
-
+            System.out.println(Arrays.toString(a));
+            System.out.println(indeks);
+        }
+        // Mildertidig return statement
+        return a;
     }
 
     /**
      * Oppgave 9
      */
 
-    public static int[]tredjeMin(int[]  a){
+    public static int[] tredjeMin(int[] a){
 
         System.out.println(Arrays.toString(a));
 
