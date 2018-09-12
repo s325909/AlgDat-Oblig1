@@ -219,7 +219,18 @@ public class Oblig1 {
     /**
      * Oppgave 7b
      *
+     * The method first finds the longest String in the provided array.
+     * This number is as a limiter for the number idx.
      *
+     * Further, we iterate through the length of each String in the array.
+     * If the length of this String is larger than the gradually increasing number idx,
+     * the character at this number in each of the Strings in the array are added to the
+     * temporary String tmp. This functions similarly to the index in an array.
+     *
+     * This ensure several things:
+     * Empty Strings are ignored, String that have reached their end are ignored, and the given
+     * index number grabs the correct character from each String gradually and continuously until
+     * all Strings have been iterated through. 
      */
     public static String flett(String... s) {
 
@@ -441,23 +452,6 @@ public class Oblig1 {
         }
 
         return values;
-    }
-
-
-    /**
-     * Funksjon som skriver ut et array til skjerm
-     *
-     * @param a Arrayet å skrive ut
-     */
-    public static void printArray(int[] a) {
-        System.out.print("[");
-        if (a.length > 0) {
-            System.out.print(a[0]);
-        }
-        for (int i = 1; i < a.length; ++i) {
-            System.out.print(", " + a[i]);
-        }
-        System.out.println("]");
     }
 
     public static void main(String[] args) {
