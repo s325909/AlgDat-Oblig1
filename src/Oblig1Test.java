@@ -189,6 +189,8 @@ public class Oblig1Test {
 
     ///// Oppgave 4 //////////////////////////////////////
     /*
+
+
     public static int oppgave4() {
         int antallFeil = 0;
 

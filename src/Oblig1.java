@@ -120,40 +120,49 @@ public class Oblig1 {
 
     public static void delsortering(int[] a) {
 
-        for (int i = 0; i < a.length - 1; i++) {
-            int m = i;             // indeks til den foreløpig minste
-            int minverdi = a[i];  // verdien til den foreløpig minste
-
-            for (int j = i + 1; j < a.length; j++) {
-                if (a[j] % 2 != 0 && minverdi % 2 != 1) {
-                    minverdi = a[j];  // ny minste verdi
-                    m = j;            // indeksen til ny minste verdi
-                } else if (a[j] < minverdi) {
-                    minverdi = a[j];  // ny minste verdi
-                    m = j;            // indeksen til ny minste verdi
-                }
+        {
+            int odd = 0;
+            for (int i = 0; i < a.length; i++)
+            {
+                if (a[i] % 2 == 1)
+                    odd++;
             }
 
-            // bytter om a[i] og a[m]
-            int temp = a[i];
-            a[i] = a[m];
-            a[m] = temp;
+            for (int leftIndex = 0; leftIndex < a.length - 1; leftIndex++)
+            {
+                int minIndex = leftIndex;
+                int minValue = a[leftIndex];
+
+                for (int currentIndex = leftIndex + 1; currentIndex < a.length; currentIndex++)
+                {
+                    int currentValue = a[currentIndex];
+
+                    if (leftIndex < odd)
+                    {
+                        if (currentValue % 2 != 0)
+                        {
+                            if (minValue % 2 == 0 || minValue > currentValue)
+                            {
+                                minValue = currentValue;
+                                minIndex = currentIndex;
+                            }
+                        }
+                    }
+
+                    else if (minValue > currentValue)
+                    {
+                        minValue = currentValue;
+                        minIndex = currentIndex;
+                    }
+                }
+
+
+                int temp = a[leftIndex];
+                a[leftIndex] = a[minIndex];
+                a[minIndex] = temp;
+            }
         }
 
-
-            /*int element = a[i];
-            int j = i - 1;
-            if (a[i] / 2 % 2 == 0) {
-
-                while (j >= 0 && a[j] > element) {
-                    a[j + 1] = a[j];
-                    j--;
-                }
-                a[j + 1] = element;*/
-
-            /*if(a[i] % 2 == 0){
-                System.out.println(a[i]);
-            }*/
             }
 
 
@@ -498,10 +507,17 @@ public class Oblig1 {
     }
 
     public static void main(String[] args) {
-        int[] a = {2, 5, 7, 9, 3, 4, 11, 23, 6, 10, 14, 17};
+
+        int[] a = {2, 5, 8, 13, 1, 4, 3, 9, 28, 18, 23, 11};
+
         delsortering(a);
+
         System.out.println(Arrays.toString(a));
 
+        /*int[] a = {2, 5, 7, 9, 3, 4, 11, 23, 6, 10, 14, 17};
+        delsortering(a);
+        System.out.println(Arrays.toString(a));
+*/
 
 //        int[] a = randomArray(3);
 //        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
