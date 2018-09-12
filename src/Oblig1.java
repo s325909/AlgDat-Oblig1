@@ -119,6 +119,76 @@ public class Oblig1 {
      */
 
     public static void delsortering(int[] a) {
+        if (a.length < 2)
+            return;
+
+        int h = a.length -1;
+        int v = 0;
+        while(v < h)
+        {
+            if (a[v] % 2 == 0) //Hvis partall... bytt
+            {
+                while (h > v && a[h] % 2 == 0)
+                    h--;
+
+                if (h > v)
+                {
+                    bytt(a, v, h);
+                    h--; //Flytt h en ned
+                }
+            }
+            v++;
+        }
+
+        //finn partisjon:
+        int partisjon = 0;
+        for (int i = 0; i < a.length; i++) {
+            if(a[i] % 2 == 0) {
+                partisjon = i;
+                break;
+            }
+        }
+
+        kvikksortering0(a, 0, partisjon - 1);     // sorterer intervallet a[v:k-1]
+        kvikksortering0(a, partisjon, a.length - 1);     // sorterer intervallet a[k+1:h]
+    }
+
+    private static void kvikksortering0 ( int[] a, int v, int h)  // en privat metode
+    {
+        if (v >= h) return;  // a[v:h] er tomt eller har maks ett element
+        int k = sParter0(a, v, h, (v + h) / 2);  // bruker midtverdien
+        kvikksortering0(a, v, k - 1);     // sorterer intervallet a[v:k-1]
+        kvikksortering0(a, k + 1, h);     // sorterer intervallet a[k+1:h]
+    }
+
+    private static int parter0 ( int[] a, int v, int h, int skilleverdi)
+    {
+        while (true)                                  // stopper når v > h
+        {
+            while (v <= h && a[v] < skilleverdi) v++;   // h er stoppverdi for v
+            while (v <= h && a[h] >= skilleverdi) h--;  // v er stoppverdi for h
+
+            if (v < h) Oblig1Test.bytt(a, v++, h--);                 // bytter om a[v] og a[h]
+            else return v;  // a[v] er nåden første som ikke er mindre enn skilleverdi
+        }
+    }
+
+    private static int sParter0 ( int[] a, int v, int h, int indeks)
+    {
+        Oblig1Test.bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
+        int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h − 1]
+        Oblig1Test.bytt(a, pos, h);              // bytter for å få skilleverdien på rett plass
+        return pos;                   // returnerer posisjonen til skilleverdien
+    }
+
+    static void bytt ( int[] a, int v, int h)
+    {
+        int temp = a[v];
+        a[v] = a[h];
+        a[h] = temp;
+    }
+
+   /* public static void delsortering(int[] a) {
 
         {
             int odd = 0;
@@ -162,7 +232,7 @@ public class Oblig1 {
                 a[minIndex] = temp;
             }
         }
-    }
+    }*/
 
 
     /**
@@ -539,7 +609,7 @@ public class Oblig1 {
 
     public static void main(String[] args) {
 
-        int[] a = {6,10,16,11,7,12,3,9,8,5};
+       int[] a = {6,10,16,11,7,12,3,9,8,5};
 
         int[] indeks = indekssortering(a);
 
@@ -547,10 +617,7 @@ public class Oblig1 {
 
         System.out.println(Arrays.toString(indeks)); // skriver ut indeks
 
-        /**
-         * Oppgave 4
-         */
-       /* int[] a = {2, 5, 8, 13, 1, 4, 3, 9, 28, 18, 23, 11};
+        /*int[] a = {2, 5, 8, 13, 1, 4, 3, 9, 28, 18, 23, 11};
 
         delsortering(a);
 
