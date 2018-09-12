@@ -124,7 +124,7 @@ public class Oblig1 {
             int odd = 0;
             for (int i = 0; i < a.length; i++)
             {
-                if (a[i] % 2 != 0)
+                if (a[i] % 2 != 0) //teller antall oddetall
                     odd++;
             }
 
@@ -137,26 +137,26 @@ public class Oblig1 {
                 {
                     int currentValue = a[currentIndex];
 
-                    if (leftIndex < odd)
+                    if (leftIndex < odd) //ser etter oddetall
                     {
-                        if (currentValue % 2 != 0)
+                        if (currentValue % 2 != 0) //dersom nummer er partall, skal det aldri på denne plassen
                         {
-                            if (minValue % 2 == 0 || minValue > currentValue)
+                            if (minValue % 2 == 0 || minValue > currentValue) //dersom nummer på plassering er partall, er alle oddetall foretrukket frem til vi finner et lavere tall
                             {
-                                minValue = currentValue;
-                                minIndex = currentIndex;
+                                minValue = currentValue; //markerer verdi til lavere tall
+                                minIndex = currentIndex; //markerer posisjon til lavere tall
                             }
                         }
                     }
 
-                    else if (minValue > currentValue)
+                    else if (minValue > currentValue) //sorterer resterende partall
                     {
                         minValue = currentValue;
                         minIndex = currentIndex;
                     }
                 }
 
-
+                //bytter posisjonen til tallene
                 int temp = a[leftIndex];
                 a[leftIndex] = a[minIndex];
                 a[minIndex] = temp;
