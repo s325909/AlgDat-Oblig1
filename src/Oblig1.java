@@ -199,6 +199,10 @@ public class Oblig1 {
      * Oppgave 4
      */
 
+    public static void bytt(int[] a, int i, int j)
+    {
+        int temp = a[i]; a[i] = a[j]; a[j] = temp;
+    }
     public static void delsortering(int[] a, int v, int h, int skilleverdi) {
 
 
