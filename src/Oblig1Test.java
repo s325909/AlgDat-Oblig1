@@ -729,7 +729,7 @@ public class Oblig1Test {
 
         return antallFeil;
     }
-    */
+
     ///// Oppgave 9 //////////////////////////////////////
 
     public static int oppgave9() {
@@ -817,6 +817,8 @@ public class Oblig1Test {
             System.out.println("metoden indekssortering på hele tabellen?");
             antallFeil++;
         }
+
+        System.out.println(tid);
 
         return antallFeil;
     }
@@ -955,7 +957,9 @@ public class Oblig1Test {
         }
         return antallFeil;
     }
+
     */
+
     ///// Hjelpemetoder /////////////////////////////
 
     public static void bytt(int[] a, int i, int j) {
@@ -1002,5 +1006,4 @@ public class Oblig1Test {
 
         return a;                        // permutasjonen returneres
     }
-
 } // class Oblig1Test

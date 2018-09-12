@@ -247,16 +247,8 @@ public class Oblig1 {
     /**
      * Oppgave 8
      */
-    public static int[] indekssortering(int[] a){
+    public static int[] indekssortering(int[] a) {
 
-        for (int i = 0; i<a.length; i++) {
-
-            int indeks = a[i];
-
-            System.out.println(Arrays.toString(a));
-            System.out.println(indeks);
-        }
-        // Mildertidig return statement
         return a;
     }
 
@@ -268,39 +260,88 @@ public class Oblig1 {
 
         System.out.println(Arrays.toString(a));
 
-        if (a.length < 4){
+        if (a.length < 3){
             throw new NoSuchElementException("Arrayet har for få elemnter");
         }
 
-        int firstMin = a[0];
-        int secondMin = a[1];
-        int thirdMin = a[2];
+        int startIndx[] = indekssortering(new int[]{a[0], a[1], a[2]});
 
+        int m = startIndx[0];
+        int nm = startIndx[1];
+        int tm = startIndx[2];
 
-        for (int i = 1; i < a.length; ++i){
-            if (a[i] < firstMin){
-                thirdMin = secondMin;
-                secondMin = firstMin;
-                firstMin = a[i];
+        int min = a[m];
+        int nestemin = a[nm];
+        int tredjemin = a[tm];
+
+        for (int i = 3; i < a.length; ++i){
+            if (a[i] < min){
+                tredjemin = nestemin;
+                tm = nm;
+
+                nestemin = min;
+                nm = m;
+
+                min = a[i];
+                m = i;
             }
-            else if (a[i] < secondMin){
-                thirdMin = secondMin;
-                secondMin = a[i];
+            else if (a[i] < nestemin){
+                tredjemin = nestemin;
+                tm = nm;
+
+                nestemin = a[i];
+                nm = i;
             }
-            else if (a[i] < thirdMin){
-                thirdMin = a[i];
+            else if (a[i] < tredjemin){
+                tredjemin = a[i];
+                tm = i;
             }
         }
 
-        System.out.println("first minimum is: " + firstMin);
-        System.out.println("second minimum is: " + secondMin);
-        System.out.println("third minimum is: " + thirdMin);
+        System.out.println("minste verdi: " + min);
+        System.out.println("nest minste verdi: " + nestemin);
+        System.out.println("tredje minste verdi: " + tredjemin);
 
-        int[] minArray = {firstMin, secondMin, thirdMin};
+        int[] minArray = {min, nestemin, tredjemin};
         System.out.println(Arrays.toString(minArray));
 
-        return minArray;
+        //return minArray;
+        return new int[] {m,nm,tm};
+    }
 
+    /**
+     * Oppgave 10
+     */
+
+    public  static boolean inneholdt(String  a,  String  b) {
+
+        if (a.length() ==  0 || b.length() == 0) {
+            throw new IllegalArgumentException("Strings of length 0 are illegal");
+        }
+
+
+        String string = a + b;
+        String s = string.toUpperCase();
+        System.out.println(s);
+
+        char[] chars = s.toCharArray();
+        System.out.println(Arrays.toString(chars));
+
+        // Create a new StringBuilder.
+        StringBuilder builder = new StringBuilder();
+
+        // Loop and append values.
+        for (int i = 0; i < 5; i++) {
+            builder.append(string);
+        }
+        // Convert to string.
+        String result = builder.toString();
+
+        // Print result.
+        System.out.println(result);
+
+
+        return true;
     }
 
 
@@ -428,6 +469,11 @@ public class Oblig1 {
         char[] b = {'A', 'B','C', 'D', 'E'};
         Oblig1Alt.rotasjon(b, -2);
         //tredjeMin(a);
+        inneholdt("AaA", "BBb");
+
+//        int[] a = randomArray(9);
+//        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
+//        tredjeMin(a);
 
         /*
         String test = flett("AM ","L","GEDS","ORATKRR","R TRTE","IO","TGAUU");
