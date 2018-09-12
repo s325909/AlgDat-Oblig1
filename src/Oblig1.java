@@ -199,10 +199,20 @@ public class Oblig1 {
      * Oppgave 4
      */
 
-    public static void delsortering(int[] a) {
+    public static void delsortering(int[] a, int v, int h, int skilleverdi) {
 
-        for (int i = 0; i < a.length; i++) {
-            int element = a[i];
+
+            for (int i = 0; i < a.length; i++) {
+
+                while (true){
+                    while (v/2 % 2 == 0 && a[v]<skilleverdi ){
+                        v++;
+                    } ;
+                    while (h/2 % 2 != 0 && a[h]>=skilleverdi){
+                        h--;
+                    }
+                }
+            /*int element = a[i];
             int j = i - 1;
             if (a[i] / 2 % 2 == 0) {
 
@@ -210,14 +220,13 @@ public class Oblig1 {
                     a[j + 1] = a[j];
                     j--;
                 }
-                a[j + 1] = element;
+                a[j + 1] = element;*/
 
             /*if(a[i] % 2 == 0){
                 System.out.println(a[i]);
             }*/
             }
         }
-    }
 
 
     /**
