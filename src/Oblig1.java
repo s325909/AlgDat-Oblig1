@@ -99,22 +99,6 @@ public class Oblig1 {
 
 
     /**
-     * Funksjon som skriver ut et array til skjerm
-     *
-     * @param a Arrayet å skrive ut
-     */
-    public static void printArray(int[] a) {
-        System.out.print("[");
-        if (a.length > 0) {
-            System.out.print(a[0]);
-        }
-        for (int i = 1; i < a.length; ++i) {
-            System.out.print(", " + a[i]);
-        }
-        System.out.println("]");
-    }
-
-    /**
      * Oppgave 2
      *
      * Antar at det menes at et enkelt tall i tabellen telles som et unikt tall
