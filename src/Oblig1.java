@@ -351,16 +351,8 @@ public class Oblig1 {
     /**
      * Oppgave 8
      */
-    public static int[] indekssortering(int[] a){
+    public static int[] indekssortering(int[] a) {
 
-        for (int i = 0; i<a.length; i++) {
-
-            int indeks = a[i];
-
-            System.out.println(Arrays.toString(a));
-            System.out.println(indeks);
-        }
-        // Mildertidig return statement
         return a;
     }
 
@@ -389,15 +381,24 @@ public class Oblig1 {
         for (int i = 3; i < a.length; ++i){
             if (a[i] < min){
                 tredjemin = nestemin;
+                tm = nm;
+
                 nestemin = min;
+                nm = m;
+
                 min = a[i];
+                m = i;
             }
             else if (a[i] < nestemin){
                 tredjemin = nestemin;
+                tm = nm;
+
                 nestemin = a[i];
+                nm = i;
             }
             else if (a[i] < tredjemin){
                 tredjemin = a[i];
+                tm = i;
             }
         }
 
@@ -408,7 +409,8 @@ public class Oblig1 {
         int[] minArray = {min, nestemin, tredjemin};
         System.out.println(Arrays.toString(minArray));
 
-        return minArray;
+        //return minArray;
+        return new int[] {m,nm,tm};
     }
 
     public static void main(String[] args) {
