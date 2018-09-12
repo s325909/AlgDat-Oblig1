@@ -397,11 +397,48 @@ public class Oblig1 {
         return new int[] {m,nm,tm};
     }
 
+    /**
+     * Oppgave 10
+     */
+
+    public  static boolean inneholdt(String  a,  String  b) {
+
+        if (a.length() ==  0 || b.length() == 0) {
+            throw new IllegalArgumentException("Strings of length 0 are illegal");
+        }
+
+
+        String string = a + b;
+        String s = string.toUpperCase();
+        System.out.println(s);
+
+        char[] chars = s.toCharArray();
+        System.out.println(Arrays.toString(chars));
+
+        // Create a new StringBuilder.
+        StringBuilder builder = new StringBuilder();
+
+        // Loop and append values.
+        for (int i = 0; i < 5; i++) {
+            builder.append(string);
+        }
+        // Convert to string.
+        String result = builder.toString();
+
+        // Print result.
+        System.out.println(result);
+
+
+        return true;
+    }
+
     public static void main(String[] args) {
 
-        int[] a = randomArray(9);
-        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
-        tredjeMin(a);
+        inneholdt("AaA", "BBb");
+
+//        int[] a = randomArray(9);
+//        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
+//        tredjeMin(a);
 
         /*
         String test = flett("AM ","L","GEDS","ORATKRR","R TRTE","IO","TGAUU");
