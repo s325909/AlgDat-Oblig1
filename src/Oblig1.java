@@ -118,23 +118,28 @@ public class Oblig1 {
      * Oppgave 4
      */
 
-    public static void bytt(int[] a, int i, int j)
-    {
-        int temp = a[i]; a[i] = a[j]; a[j] = temp;
-    }
-    public static void delsortering(int[] a, int v, int h, int skilleverdi) {
+    public static void delsortering(int[] a) {
 
+        for (int i = 0; i < a.length - 1; i++) {
+            int m = i;             // indeks til den foreløpig minste
+            int minverdi = a[i];  // verdien til den foreløpig minste
 
-            for (int i = 0; i < a.length; i++) {
-
-                while (true){
-                    while (v/2 % 2 == 0 && a[v]<skilleverdi ){
-                        v++;
-                    } ;
-                    while (h/2 % 2 != 0 && a[h]>=skilleverdi){
-                        h--;
-                    }
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] % 2 != 0 && minverdi % 2 != 1) {
+                    minverdi = a[j];  // ny minste verdi
+                    m = j;            // indeksen til ny minste verdi
+                } else if (a[j] < minverdi) {
+                    minverdi = a[j];  // ny minste verdi
+                    m = j;            // indeksen til ny minste verdi
                 }
+            }
+
+            // bytter om a[i] og a[m]
+            int temp = a[i];
+            a[i] = a[m];
+            a[m] = temp;
+        }
+
 
             /*int element = a[i];
             int j = i - 1;
@@ -150,7 +155,6 @@ public class Oblig1 {
                 System.out.println(a[i]);
             }*/
             }
-        }
 
 
     /**
@@ -494,15 +498,18 @@ public class Oblig1 {
     }
 
     public static void main(String[] args) {
+        int[] a = {2, 5, 7, 9, 3, 4, 11, 23, 6, 10, 14, 17};
+        delsortering(a);
+        System.out.println(Arrays.toString(a));
 
 
-        int[] a = randomArray(3);
-        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
+//        int[] a = randomArray(3);
+//        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
 
-        char[] b = {'A', 'B','C', 'D', 'E'};
-        Oblig1Alt.rotasjon(b, -2);
-        //tredjeMin(a);
-        inneholdt("AaA", "BBb");
+//        char[] b = {'A', 'B','C', 'D', 'E'};
+//        Oblig1Alt.rotasjon(b, -2);
+//        //tredjeMin(a);
+//        inneholdt("AaA", "BBb");
 
 //        int[] a = randomArray(9);
 //        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
