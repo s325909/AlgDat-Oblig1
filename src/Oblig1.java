@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 /**
  * Gruppemedlemmer:
@@ -40,6 +41,25 @@ public class Oblig1 {
     public static int ombyttinger(int[] a) {
         bubble(a);
         return inversjoner;
+    }
+
+    public static int[] randPerm(int n)  // en effektiv versjon
+    {
+        Random r = new Random();         // en randomgenerator
+        int[] a = new int[n];            // en tabell med plass til n tall
+        for (int i = 0; i < n; i++)
+            a[i] = i + 1;                  // legger inn tallene 1, 2, . , n
+
+        for (int k = n - 1; k > 0; k--)  // løkke som går n - 1 ganger
+        {
+            int i = r.nextInt(k + 1);        // en tilfeldig tall fra 0 til k
+
+            int temp = a[k];
+            a[k] = a[i];
+            a[i] = temp;
+        }
+
+        return a;                        // permutasjonen returneres
     }
 
     /**
