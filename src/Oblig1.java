@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -19,12 +18,14 @@ public class Oblig1 {
      *
      * Når er det flest ombyttinger?
      * - Når det stoerste tallet er foerst i tabellen
+     * - Totalt sett 3 * n (3 operasjoner blir utfoert for hvert bytte)
      *
      * Når blir det faerrest ombyttinger?
      * - Når tabellen er i stigende rekkefoelge
+     * - Dvs. 0 ombyttinger
      *
      * Hvor mange blir det i gjennomsnitt?
-     * - Veit ikke! Kanskje 3. muligen 4.
+     * - Gjennomsnittet er n
      */
 
     // Runs the bubble method, which will sort the values of the array in ascending order.
@@ -43,23 +44,45 @@ public class Oblig1 {
         return inversjoner;
     }
 
-    public static int[] randPerm(int n)  // en effektiv versjon
-    {
-        Random r = new Random();         // en randomgenerator
-        int[] a = new int[n];            // en tabell med plass til n tall
-        for (int i = 0; i < n; i++)
-            a[i] = i + 1;                  // legger inn tallene 1, 2, . , n
+    // Method for sort an array a, via bubble-sorting.
+    // Compares two pairs of values, and moves the largest number to the right.
+    public static int inversjoner;
+    public static void bubble(int[] a) {
+        inversjoner = 0;
 
-        for (int k = n - 1; k > 0; k--)  // løkke som går n - 1 ganger
-        {
-            int i = r.nextInt(k + 1);        // en tilfeldig tall fra 0 til k
+        for (int i = 0; i < a.length - 1; ++i) {
+            if (a[i] > a[i + 1]) {
+                int tmp = a[i+1];
+                a[i+1] = a[i];
+                a[i] = tmp;
+                ++inversjoner;
+            }
+        }
+    }
 
-            int temp = a[k];
-            a[k] = a[i];
-            a[i] = temp;
+    public static int gjennomsnittligOmbytte(int tabellLengde)  {
+        int antallPerm = 100;
+        int ombyttinger = 0;
+
+        Random r = new Random();
+        int[] a = new int[tabellLengde];
+        for (int i = 0; i < tabellLengde; i++)
+            a[i] = i + 1;
+
+        for (int j = 0; j < antallPerm; ++j) {
+            for (int k = tabellLengde - 1; k > 0; k--)
+            {
+                int i = r.nextInt(k + 1);
+
+                int temp = a[k];
+                a[k] = a[i];
+                a[i] = temp;
+            }
+
+            ombyttinger += ombyttinger(a);
         }
 
-        return a;                        // permutasjonen returneres
+        return (ombyttinger / antallPerm);
     }
 
     /**
@@ -83,6 +106,33 @@ public class Oblig1 {
         // equal to the largest number in array 'a'. Then you use each value of array 'a' as index
         // in the boolean table and set each of these to true. As such, only unique values are counted.
         // Finally you can iterate through each index of the boolean table and count each 'true' value.
+    }
+
+//    Method obtain from this source:
+//    https://stackoverflow.com/questions/32444193/count-different-values-in-array-in-java
+//
+//    Creates an ArrayList and adds each unique value in array 'a' into it.
+//    The size of the ArrayList will then equal the number of unique values.
+//
+//    This method doesn't require the array to be sorted, but it obviously uses an ArrayList as help
+
+    public static int numDiffValues(int[] a) {
+        int numValues;
+        ArrayList<Integer> diffNum = new ArrayList<>();
+
+        for(int i = 0; i < a.length; i++){
+            if(!diffNum.contains(a[i])){
+                diffNum.add(a[i]);
+            }
+        }
+
+        if(diffNum.size() > 0){
+            numValues = diffNum.size();
+        } else {
+            numValues = 0;
+        }
+
+        return numValues;
     }
 
     /**
@@ -161,6 +211,14 @@ public class Oblig1 {
         kvikksortering0(a, k + 1, h);     // sorterer intervallet a[k+1:h]
     }
 
+    private static int sParter0 ( int[] a, int v, int h, int indeks)
+    {
+        Oblig1Test.bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
+        int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h − 1]
+        Oblig1Test.bytt(a, pos, h);              // bytter for å faa skilleverdien på rett plass
+        return pos;                   // returnerer posisjonen til skilleverdien
+    }
+
     private static int parter0 ( int[] a, int v, int h, int skilleverdi)
     {
         while (true)                                  // stopper når v > h
@@ -169,16 +227,8 @@ public class Oblig1 {
             while (v <= h && a[h] >= skilleverdi) h--;  // v er stoppverdi for h
 
             if (v < h) Oblig1Test.bytt(a, v++, h--);                 // bytter om a[v] og a[h]
-            else return v;  // a[v] er nåden første som ikke er mindre enn skilleverdi
+            else return v;  // a[v] er naaden foerste som ikke er mindre enn skilleverdi
         }
-    }
-
-    private static int sParter0 ( int[] a, int v, int h, int indeks)
-    {
-        Oblig1Test.bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
-        int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h − 1]
-        Oblig1Test.bytt(a, pos, h);              // bytter for å få skilleverdien på rett plass
-        return pos;                   // returnerer posisjonen til skilleverdien
     }
 
     static void bytt ( int[] a, int v, int h)
@@ -187,53 +237,6 @@ public class Oblig1 {
         a[v] = a[h];
         a[h] = temp;
     }
-
-   /* public static void delsortering(int[] a) {
-
-        {
-            int odd = 0;
-            for (int i = 0; i < a.length; i++)
-            {
-                if (a[i] % 2 != 0) //teller antall oddetall
-                    odd++;
-            }
-
-            for (int leftIndex = 0; leftIndex < a.length - 1; leftIndex++)
-            {
-                int minIndex = leftIndex;
-                int minValue = a[leftIndex];
-
-                for (int currentIndex = leftIndex + 1; currentIndex < a.length; currentIndex++)
-                {
-                    int currentValue = a[currentIndex];
-
-                    if (leftIndex < odd) //ser etter oddetall
-                    {
-                        if (currentValue % 2 != 0) //dersom nummer er partall, skal det aldri på denne plassen
-                        {
-                            if (minValue % 2 == 0 || minValue > currentValue) //dersom nummer på plassering er partall, er alle oddetall foretrukket frem til vi finner et lavere tall
-                            {
-                                minValue = currentValue; //markerer verdi til lavere tall
-                                minIndex = currentIndex; //markerer posisjon til lavere tall
-                            }
-                        }
-                    }
-
-                    else if (minValue > currentValue) //sorterer resterende partall
-                    {
-                        minValue = currentValue;
-                        minIndex = currentIndex;
-                    }
-                }
-
-                //bytter posisjonen til tallene
-                int temp = a[leftIndex];
-                a[leftIndex] = a[minIndex];
-                a[minIndex] = temp;
-            }
-        }
-    }*/
-
 
     /**
      * Oppgave 5
@@ -244,18 +247,10 @@ public class Oblig1 {
      */
 
     public static void rotasjon(char[] a){
-
-        System.out.println(Arrays.toString(a));
-
         for (int i = 0; i < a.length; ++i){
             char tmp = a[i];
-
             a[i] = a[a.length - 1];
             a[a.length - 1] = tmp;
-
-            System.out.println(Arrays.toString(a));
-
-
         }
     }
 
@@ -381,8 +376,8 @@ public class Oblig1 {
 
         for (int i = 0; i < a.length - 1; i++)
         {
-            int m = i;             // indeks til den foreløpig minste
-            int  minverdi = a[i];  // verdien til den foreløpig minste
+            int m = i;             // indeks til den foreloepig minste
+            int  minverdi = a[i];  // verdien til den foreloepig minste
 
             for (int j = i + 1; j < a.length; j++)
             {
@@ -421,9 +416,6 @@ public class Oblig1 {
      */
 
     public static int[] tredjeMin(int[] a){
-
-        System.out.println(Arrays.toString(a));
-
         if (a.length < 3){
             throw new NoSuchElementException("Arrayet har for få elementer");
         }
@@ -461,102 +453,56 @@ public class Oblig1 {
                 tm = i;
             }
         }
-
-        System.out.println("minste verdi: " + min);
-        System.out.println("nest minste verdi: " + nestemin);
-        System.out.println("tredje minste verdi: " + tredjemin);
-
-        int[] minArray = {min, nestemin, tredjemin};
-        System.out.println(Arrays.toString(minArray));
-
-        //return minArray;
         return new int[] {m,nm,tm};
     }
 
     /**
      * Oppgave 10
+     *
+     * Takes each String and puts them into a new array where the letter 'a' equals index 0.
+     * The value at this index equals the number of times the letter occurs.
+     * If there are 3 'a' in the array, the value at index 0 in the new array would be 3.
      */
 
     public  static boolean inneholdt(String  a,  String  b) {
+        int[] charMapA = charFreqArray(a);
+        int[] charMapB = charFreqArray(b);
 
-        if (a.length() ==  0 || b.length() == 0) {
-            throw new IllegalArgumentException("Strings of length 0 are illegal");
+        for (int i = 0; i < charMapA.length; ++i) {
+            if (charMapA[i] > charMapB[i]) {
+                return false;
+            }
         }
-
-
-        String string = a + b;
-        String s = string.toUpperCase();
-        System.out.println(s);
-
-        char[] chars = s.toCharArray();
-        System.out.println(Arrays.toString(chars));
-
-        // Create a new StringBuilder.
-        StringBuilder builder = new StringBuilder();
-
-        // Loop and append values.
-        for (int i = 0; i < 5; i++) {
-            builder.append(string);
-        }
-        // Convert to string.
-        String result = builder.toString();
-
-        // Print result.
-        System.out.println(result);
-
-
         return true;
     }
 
+    public static int[] charFreqArray(String a) {
+        int[] charMap = new int[29];
 
-
-
-    ///// Hjelpemetoder /////////////////////////////////////////
-
-    public static int inversjoner = 0;
-
-    // Method for sort an array a, via bubble-sorting.
-    // Compares two pairs of values, and moves the largest number to the right.
-    public static void bubble(int[] a) {
-        inversjoner = 0;
-
-        for (int i = 0; i < a.length - 1; ++i) {
-            if (a[i] > a[i + 1]) {
-                int tmp = a[i+1];
-                a[i+1] = a[i];
-                a[i] = tmp;
-                ++inversjoner;
-            }
+        for (int i = 0; i < a.length(); ++i) {
+            charMap[charChecker(a.charAt(i)) - Character.getNumericValue('a')]++;
         }
+
+        return charMap;
     }
 
-//    Method obtain from this source:
-//    https://stackoverflow.com/questions/32444193/count-different-values-in-array-in-java
-//
-//    Creates an ArrayList and adds each unique value in array 'a' into it.
-//    The size of the ArrayList will then equal the number of unique values.
-//
-//    This method doesn't require the array to be sorted, but it obviously uses an ArrayList as help
-
-    public static int numDiffValues(int[] a) {
-        int numValues;
-        ArrayList<Integer> diffNum = new ArrayList<>();
-
-        for(int i = 0; i < a.length; i++){
-            if(!diffNum.contains(a[i])){
-                diffNum.add(a[i]);
-            }
-        }
-
-        if(diffNum.size() > 0){
-            numValues = diffNum.size();
+    // Method for handling the Norwegian letters in the alphabet, as the value of these do not follow 'z'
+    public static int charChecker(char a) {
+        char lowerA = Character.toLowerCase(a);
+        if (lowerA != 'æ' && lowerA != 'ø' && lowerA != 'å') {
+            return Character.getNumericValue(lowerA);
+        } else if (lowerA == 'æ') {
+            return 36;
+        } else if (lowerA == 'ø') {
+            return 37;
+        } else if (lowerA == 'å') {
+            return 38;
         } else {
-            numValues = 0;
+            return 10;
         }
-
-        return numValues;
     }
 
+//    Alternativ til oppgave 2
 //    Method obtained from this source:
 //    https://codereview.stackexchange.com/questions/114073/count-the-number-of-unique-elements-in-a-sorted-array
 //
@@ -575,107 +521,5 @@ public class Oblig1 {
             }
         }
         return count;
-    }
-
-    /**
-     * Funksjon som lager et array med tilfeldige tall mellom
-     * 1 og num_values uten duplikater
-     *
-     * @param num_values Lengden på arrayet
-     * @return Array med lengde num_values
-     */
-    public static int[] randomArray(int num_values) {
-        System.out.println("randomArray2 lager et array");
-        int values[] = new int[num_values];
-
-        //Fyll arrayet med tallene 1 til 10
-        for (int i=0; i<num_values; ++i) {
-            values[i] = i+1;
-        }
-
-        //Loop gjennom arrayet, og bytt random
-        for (int i=num_values-1; i > 0; --i) {
-            // Trekk et tilfeldig tall mellom 0 og i
-            int k = (int) (Math.random()*i);
-
-            //bytt tallene k og i
-            int temp = values[i];
-            values[i] = values[k];
-            values[k] = temp;
-        }
-
-        return values;
-    }
-
-    public static void main(String[] args) {
-
-       int[] a = {6,10,16,11,7,12,3,9,8,5};
-
-        int[] indeks = indekssortering(a);
-
-        System.out.println(Arrays.toString(a)); // skriver ut a
-
-        System.out.println(Arrays.toString(indeks)); // skriver ut indeks
-
-        /*int[] a = {2, 5, 8, 13, 1, 4, 3, 9, 28, 18, 23, 11};
-
-        delsortering(a);
-
-        System.out.println(Arrays.toString(a));*/
-
-        /*int[] a = {2, 5, 7, 9, 3, 4, 11, 23, 6, 10, 14, 17};
-        delsortering(a);
-        System.out.println(Arrays.toString(a));
-*/
-
-//        int[] a = randomArray(3);
-//        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
-
-//        char[] b = {'A', 'B','C', 'D', 'E'};
-//        Oblig1Alt.rotasjon(b, -2);
-//        //tredjeMin(a);
-//        inneholdt("AaA", "BBb");
-
-//        int[] a = randomArray(9);
-//        //int[] a = { 1, 8, 6, 7, 5, 4, 9};
-//        tredjeMin(a);
-
-        /*
-        String test = flett("AM ","L","GEDS","ORATKRR","R TRTE","IO","TGAUU");
-        System.out.println(test);
-        */
-
-//        String a = flett("AB CGD", "D EF");
-//        String b = flett("heidei", "jaja");
-//        System.out.println(a + " " + b);
-
-        /*
-
-        // Bestem lengden av arrayet vi skal lage
-        int num_values = 7;
-
-        // Lag random array med metode 1
-        int values1[] = randomArray(num_values);
-        printArray(values1);
-
-        maks(values1);
-
-        int[] sortert = {1,2,3,3,4,5,6,7,8,8,9,10};
-        int[] usortert = {2,3,1,10,9,10,9,3,11,12};
-
-        System.out.println("Unike tall i sortert tabell " + antallUlikeSortert(sortert));
-        System.out.println("Unike tall i usortert tabell " + antallUlikeUsortert(usortert));
-        */
-
-//        char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-//
-//        rotasjon(abc, 6);
-//
-//        System.out.println(Arrays.toString(abc));
-//
-//        String s = "abc";
-//        char[] stest = s.toCharArray();
-//        System.out.println(Arrays.toString(stest));
-
     }
 }
