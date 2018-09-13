@@ -409,15 +409,15 @@ public class Oblig1 {
     /**
      * Oppgave 9
      *
-     * This method creates a help table startIndx containing the first three values.
+     * This method creates a help table startIdx containing the first three values.
      * Then use index sorting to get it in ascending order and declaree
-     * these values as the lowest, second- and third-lowest values and indexes.
+     * these values as the "minst, neste minste and tredje minste" values and indexes.
      *
-     * Runs through a for-loop to check and determine min, nextmin and thirdmin
+     * Runs through a for-loop to check and determine min, nm and tm
      * by swapping values and indexes of these along the way.
      *
      * After we have driven through the entire array we will end up with the
-     * lowest, second- and third-lowest values and indexes.
+     * three lowest values and indexes.
      */
 
     public static int[] tredjeMin(int[] a){
@@ -428,11 +428,11 @@ public class Oblig1 {
             throw new NoSuchElementException("Arrayet har for få elementer");
         }
 
-        int startIndx[] = indekssortering(new int[]{a[0], a[1], a[2]});
+        int startIdx[] = indekssortering(new int[]{a[0], a[1], a[2]});
 
-        int m = startIndx[0];
-        int nm = startIndx[1];
-        int tm = startIndx[2];
+        int m = startIdx[0];
+        int nm = startIdx[1];
+        int tm = startIdx[2];
 
         int min = a[m];
         int nestemin = a[nm];
